@@ -39,7 +39,7 @@ axios({
         imageJean.push($(elem).find('img').attr('src'));
        
         imageJeanArr=imageJean.filter(myFilter);
-        
+        imageJeanArr.unshift('NO IMAGE')
 
         //========================================
        
