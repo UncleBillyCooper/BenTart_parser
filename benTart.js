@@ -50,12 +50,21 @@ axios({
             this.price = price;
             this.image = image;
         }
+	//===============================================
+      const totalArray=[]
+        let item
+
+        function Goodie(name, price,image) {
+            this.name = name;
+            this.price = price;
+            this.image = image;
+        }
 
         for(i=0;i<=10;i++){
             item = new Goodie(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
-        
+            totalArray.push(item)
         }
-        totalArray.push(item)
+        
         console.log(totalArray)
         //========================================
     })
