@@ -42,15 +42,7 @@ axios({
         
 
         //========================================
-        const totalArray=[]
-        let item
-
-        function Goodie(name, price,image) {
-            this.name = name;
-            this.price = price;
-            this.image = image;
-        }
-	//===============================================
+       
       const totalArray=[]
         let item
 
