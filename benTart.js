@@ -25,25 +25,12 @@ axios({
           }
         //===========================================
         const nameJeanHTML=$('.products-holder-info>.name').text().split('\n');
-        const varNameJean=[];
-        let nameJeanArr='';
-        for(let key of nameJeanHTML){
-          key+=1
-          varNameJean.push(nameJeanHTML)
-          nameJeanArr=varNameJean[0].filter(myFilter)
-                           
-        }
+        const nameJeanArr=nameJeanHTML.filter(myFilter);
+        
         //========================================
-        let priceJeanArr=[];
         const priceJeanHTML=$('.products-holder-info>.price').text().split('\n')//.match(/[\d]+[\.]+[\d]*/g);
-        const varPriceJean=[];
-
-        for(let key of priceJeanHTML){
-          key+=1
-          varPriceJean.push(priceJeanHTML)
-          priceJeanArr=varPriceJean[0].filter(myFilter)
-                           
-        }
+        const priceJeanArr=priceJeanHTML.filter(myFilter);
+       
         //========================================
         let imageJeanArr=[];
         const varImageJean=[];
@@ -72,9 +59,9 @@ axios({
         //========================================
           
         //console.log(nameJeanArr.length)
-        //console.log(priceJeanArr.length)
+        //console.log(priceJeanArr)
         //console.log(imageJeanArr)
-        console.log(totalArray)
+        console.log(totalArray.length)
         //========================================
     
     })
