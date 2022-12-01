@@ -25,42 +25,57 @@ axios({
           }
         //===========================================
         const nameJeanHTML=$('.products-holder-info>.name').text().split('\n');
-        const nameJeanArr=nameJeanHTML.filter(myFilter);
-        
-        //====================
-        const priceJeanHTML=$('.products-holder-info>.price').text().split('\n');
-        const   priceJeanArr=priceJeanHTML.filter(myFilter);
-        
-        //====================
-        let   imageJeanArr=[];
-        const   imageJean=[];
-        const imageJeanHTML=$('.products-holder-info>.img')
-        .each((i,elem)=>{
-        imageJean.push($(elem).find('img').attr('src'));
-       
-        imageJeanArr=imageJean.filter(myFilter);
-        imageJeanArr.unshift('NO IMAGE')
-
+        const varNameJean=[];
+        let nameJeanArr='';
+        for(let key of nameJeanHTML){
+          key+=1
+          varNameJean.push(nameJeanHTML)
+          nameJeanArr=varNameJean[0].filter(myFilter)
+                           
+        }
         //========================================
-        const totalArray=[]
-        let item
+        let priceJeanArr=[];
+        const priceJeanHTML=$('.products-holder-info>.price').text().split('\n')//.match(/[\d]+[\.]+[\d]*/g);
+        const varPriceJean=[];
+
+        for(let key of priceJeanHTML){
+          key+=1
+          varPriceJean.push(priceJeanHTML)
+          priceJeanArr=varPriceJean[0].filter(myFilter)
+                           
+        }
+        //========================================
+        let imageJeanArr=[];
+        const varImageJean=[];
+        const imageJeanHTML=$('.products-holder-info>.img');
+        imageJeanHTML.each((i,elem)=>{
+          varImageJean.push($(elem).find('img').attr('src'))
+        })
+        imageJeanArr=varImageJean.filter(myFilter)
+        imageJeanArr.unshift('NO IMAGE')
+        //========================================
         
+        const totalArray=[];
 
         function Goody(name, price,image) {
-            this.name = name;
-            this.price = price;
-            this.image = image;
+          this.name = name;
+          this.price = price;
+          this.image = image;
+        }
+  
+        for(i=0;i<11;i++){
+          const item = new Goody(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
+          totalArray.push(item)
+          
         }
 
-        for(i=0;i<=10;i++){
-            item = new Goody(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
-            if(imageJeanArr[i]){totalArray.push(item)}
-                        
-        }
-                
+        //========================================
           
+        //console.log(nameJeanArr.length)
+        //console.log(priceJeanArr.length)
+        //console.log(imageJeanArr)
         console.log(totalArray)
         //========================================
-    })
+    
     })
     .catch(error => console.log(error));
