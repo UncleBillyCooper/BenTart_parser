@@ -42,28 +42,25 @@ axios({
         imageJeanArr.unshift('NO IMAGE')
 
         //========================================
-       
-      const totalArray=[]
+        const totalArray=[]
         let item
+        
 
-        function Goodie(name, price,image) {
+        function Goody(name, price,image) {
             this.name = name;
             this.price = price;
             this.image = image;
         }
 
         for(i=0;i<=10;i++){
-            item = new Goodie(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
-            totalArray.push(item)
+            item = new Goody(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
+            if(imageJeanArr[i]){totalArray.push(item)}
+                        
         }
-        
+                
+          
         console.log(totalArray)
         //========================================
     })
-        //====================
-        //console.log(nameJeanArr)
-        //console.log(priceJeanArr)
-        //console.log(imageJeanArr)
-
     })
     .catch(error => console.log(error));
