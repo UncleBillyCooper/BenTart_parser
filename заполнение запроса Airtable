@@ -1,14 +1,10 @@
 var Airtable = require('airtable');
 var base = new Airtable({apiKey: 'keyqBXUjRWwhafmU7'}).base('appCxZ411GXCRNFkJ');
 
-
-
-
 const nameArr = ['Ilya', 'Kate','Sasha','Sergey'];
 const priceArr=['20$','30$','40$','50$']
 let records = {};
 const x=[];
-
 
 
 function addRecords (fields){
