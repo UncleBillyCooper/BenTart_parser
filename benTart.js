@@ -2,6 +2,7 @@ const axios = require("axios");
 const cheerio = require('cheerio');
 const HttpProxyAgent = require("http-proxy-agent");
 const HttpsProxyAgent = require("https-proxy-agent");
+const Airtable = require('airtable');
 
 
 const url = "https://www.tartextextiles.com/Jean-Cloth_c_14.html";
@@ -43,26 +44,34 @@ axios({
         //========================================
         
         const totalArray=[];
+        let records = {};
 
-        function Goody(name, price,image) {
-          this.name = name;
-          this.price = price;
-          this.image = image;
+
+        function addRecords (fields){
+          records = {fields}
         }
-  
+        
         for(i=0;i<11;i++){
-          const item = new Goody(nameJeanArr[i], priceJeanArr[i],imageJeanArr[i]);
-          totalArray.push(item)
+          //item = new Goody (nameArr[i],priceArr[i]);
+          item=new Object();
+          item.name=nameJeanArr[i];
+          item.price=priceJeanArr[i]
+          item.image=imageJeanArr[i]
+          addRecords(item)
+          totalArray.push(records)
           
         }
-
+        
         //========================================
-          
-        //console.log(nameJeanArr.length)
-        //console.log(priceJeanArr)
-        //console.log(imageJeanArr)
-        console.log(totalArray.length)
-        //========================================
-    
+        const base = new Airtable({apiKey: 'keyqBXUjRWwhafmU7'}).base('appCxZ411GXCRNFkJ');
+        base('JS test').create(totalArray, function(err, records) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          records.forEach(function (record) {
+            console.log(record.getId());
+          });
+        });
     })
     .catch(error => console.log(error));
