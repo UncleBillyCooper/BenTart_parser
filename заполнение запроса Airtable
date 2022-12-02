@@ -1,0 +1,63 @@
+var Airtable = require('airtable');
+var base = new Airtable({apiKey: 'keyqBXUjRWwhafmU7'}).base('appCxZ411GXCRNFkJ');
+
+
+
+
+const x=[
+  {
+    "fields": {
+      "name": "",
+      "price": "",
+      "image": ""
+    }
+  },
+  {
+    "fields": {
+      "name": "",
+      "price": "",
+      "image": ""
+    }
+  },
+  {
+    "fields": {
+      "name": "",
+      "price": "",
+      "image": ""
+    }
+  },
+    {
+     "fields": {
+      "name": "",
+      "price": "",
+      "image": ""
+    }
+  }
+];
+
+
+const nameArr = ['Ilya', 'Kate','Sasha','Sergey'];
+const priceArr=['20$','30$','40$','50$']
+const imageArr=['Картинка1','Картинка2','Картинка3','Картинка4']
+//const records = [];
+
+
+for(i=0;i<4;i++){
+  //fields1 = new fields (nameArr[i],priceArr[i]);
+  //addRecords(new fields (nameArr[i],priceArr[i]))
+  x[i].fields.name=nameArr[i]
+  x[i].fields.price=priceArr[i]
+  x[i].fields.image=imageArr[i]
+  //console.log(x[0])
+}
+
+console.log(x)
+base('JS test').create(x, function(err, records) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  records.forEach(function (record) {
+    console.log(record.getId());
+  });
+});
