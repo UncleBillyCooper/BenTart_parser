@@ -1,0 +1,21 @@
+const nameArr = ['Ilya', 'Kate','Sasha','Sergey'];
+const priceArr=['20$','30$','40$','50$']
+let records = {};
+
+
+function fields (name,price){
+  this.name=name;
+  this.price=price
+}
+
+
+function addRecords (fields){
+  records = {...fields}
+}
+
+for(i=0;i<4;i++){
+  //fields1 = new fields (nameArr[i],priceArr[i]);
+  addRecords(new fields (nameArr[i],priceArr[i]))
+  
+  console.log(records)
+}
