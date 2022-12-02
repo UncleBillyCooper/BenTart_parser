@@ -44,7 +44,11 @@ axios({
         //========================================
         
         const totalArray=[];
+        let totalArr1=[];
+        let totalArr2=[];
+
         let records = {};
+        
 
 
         function addRecords (fields){
@@ -59,19 +63,37 @@ axios({
           item.image=imageJeanArr[i]
           addRecords(item)
           totalArray.push(records)
+          totalArr1=totalArray.slice(0,5)
+          totalArr2=totalArray.slice(5,12)
           
         }
+        //console.log(totalArr1);
+        //console.log(totalArray);
         
         //========================================
+        
         const base = new Airtable({apiKey: 'keyqBXUjRWwhafmU7'}).base('appCxZ411GXCRNFkJ');
-        base('JS test').create(totalArray, function(err, records) {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          records.forEach(function (record) {
-            console.log(record.getId());
+                      
+        base('JS test').create(totalArr1, function(err, records) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            records.forEach(function (record) {
+              console.log(record.getId());
+            });
           });
-        });
+        
+          base('JS test').create(totalArr2, function(err, records) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            records.forEach(function (record) {
+              console.log(record.getId());
+            });
+          });
+        
+
     })
     .catch(error => console.log(error));
