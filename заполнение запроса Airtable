@@ -4,54 +4,27 @@ var base = new Airtable({apiKey: 'keyqBXUjRWwhafmU7'}).base('appCxZ411GXCRNFkJ')
 
 
 
-const x=[
-  {
-    "fields": {
-      "name": "",
-      "price": "",
-      "image": ""
-    }
-  },
-  {
-    "fields": {
-      "name": "",
-      "price": "",
-      "image": ""
-    }
-  },
-  {
-    "fields": {
-      "name": "",
-      "price": "",
-      "image": ""
-    }
-  },
-    {
-     "fields": {
-      "name": "",
-      "price": "",
-      "image": ""
-    }
-  }
-];
-
-
 const nameArr = ['Ilya', 'Kate','Sasha','Sergey'];
 const priceArr=['20$','30$','40$','50$']
-const imageArr=['Картинка1','Картинка2','Картинка3','Картинка4']
-//const records = [];
+let records = {};
+const x=[];
 
 
-for(i=0;i<4;i++){
-  //fields1 = new fields (nameArr[i],priceArr[i]);
-  //addRecords(new fields (nameArr[i],priceArr[i]))
-  x[i].fields.name=nameArr[i]
-  x[i].fields.price=priceArr[i]
-  x[i].fields.image=imageArr[i]
-  //console.log(x[0])
+
+function addRecords (fields){
+  records = {fields}
 }
 
-console.log(x)
+for(i=0;i<4;i++){
+  //item = new Goody (nameArr[i],priceArr[i]);
+  item=new Object();
+  item.name=nameArr[i];
+  item.price=priceArr[i]
+  addRecords(item)
+  x.push(records)
+  //console.log(records)
+}
+
 base('JS test').create(x, function(err, records) {
   if (err) {
     console.error(err);
